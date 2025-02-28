@@ -1,0 +1,77 @@
+/* Estilo para el cuerpo de la página con fondo degradado oscuro y colores vibrantes */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a1a1a, #3a1d6f, #5e2a8a, #682d91, #3b2a4d); /* Degradado con morados y oscuros */
+    color: #fff; /* Texto blanco para contraste */
+}
+
+/* Estilo para el nombre de la aplicación */
+.app-name {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Estilo para el círculo que representa la entrada de voz */
+.circle {
+    background-color: #007bff;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación de onda para el micrófono */
+.wave {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    animation: wave-animation 1.5s ease-out infinite;
+    opacity: 0.6;
+}
+
+/* Animación de onda */
+@keyframes wave-animation {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0.6;
+    }
+}
+
+/* Estilo para el texto de respuesta que aparece después */
+.welcome-text {
+    font-size: 36px;
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+    display: none; /* Inicialmente oculto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
