@@ -2,22 +2,96 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BurocracIA Zero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+
+    <title>Página Web Dinámica</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Parte superior izquierda con el nombre de la aplicación -->
-    <div class="app-name">BurocracIA Zero</div>
+    <header>
+        <nav>
+            <a href="#" class="logo">MiLogo</a>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#productos">Productos</a>
+                <a href="#acerca-de">Acerca de</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <button class="login-btn">Iniciar Sesión</button>
+        </nav>
+    </header>
+    
+    <main id="inicio">
+        <h1>¿Qué quieres gestionar hoy?</h1>
+        
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Busca el trámite que quieras">
+            <button class="voice-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                Voz
+            </button>
+        </div>
+    </main>
 
-    <!-- Círculo con el icono de entrada de voz -->
-    <div class="circle" id="voiceButton">
-        <i class="mic-icon">🎤</i> <!-- Icono de micrófono -->
-    </div>
+    <section id="servicios">
+        <div class="section-content">
+            <div class="text">
+                <h2>Servicios</h2>
+                <p>Contenido de relleno para la sección de servicios. Nuestros servicios te ayudarán a ahorrar tiempo. Contenido de relleno para la sección de servicios. Nuestros servicios te ayudarán a ahorrar tiempo.Contenido de relleno para la sección de servicios. Nuestros servicios te ayudarán a ahorrar tiempo.</p>
+            </div>
+            <div class="image">
+                <img src="education.png" alt="Servicios">
+            </div>
+        </div>
+    </section>
 
-    <!-- Texto debajo del círculo (se mostrará después de 3 segundos) -->
-    <div class="welcome-text" id="responseText"></div>
+    <section id="productos">
+        <div class="section-content">
+            <div class="image">
+                <img src="asistente.png" alt="Productos" width="180">
+            </div>
+            <div class="text">
+                <h2>Productos</h2>
+                <p>Contenido de relleno para la sección de productos.</p>
+            </div>
+        </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="acerca-de">
+        <div class="section-content">
+            <div class="text">
+                <h2>Acerca de</h2>
+                <p>Contenido de relleno para la sección de acerca de.</p>
+            </div>
+            <div class="image">
+                <img src="https://via.placeholder.com/150" alt="Acerca de">
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="section-content">
+            <div class="image">
+                <img src="https://via.placeholder.com/150" alt="Contacto">
+            </div>
+            <div class="text">
+                <h2>Contacto</h2>
+                <p>Contenido de relleno para la sección de contacto.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 MiEmpresa. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
