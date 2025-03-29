@@ -174,7 +174,7 @@ section {
     align-items: center;
     justify-content: space-between;
     background-color: #2a43c0;
-    border-radius: 15px;
+    border-radius: 30px;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -204,7 +204,7 @@ section h2 {
     font-size: 38px;
     margin-bottom: 20px;
     color: #ffffff;
-    text-align: center;
+    text-align: left;
 }
 
 section p {
@@ -225,4 +225,40 @@ footer {
 
 footer p {
     color: #666;
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 35px; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+    }
+
+    .search-container {
+        flex-direction: column; /* Coloca los elementos en una columna */
+        align-items: stretch; /* Alinea los elementos para que ocupen todo el ancho */
+    }
+
+    .search-bar {
+        font-size: 14px; /* Reduce el tamaño de la fuente */
+        padding: 10px; /* Ajusta el padding */
+    }
+
+    .voice-btn {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-top: 10px; /* Añade un margen superior */
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .section-content {
+        flex-direction: column; /* Coloca el contenido de las secciones en una columna */
+        padding: 10px; /* Ajusta el padding */
+    }
+
+    section h2 {
+        font-size: 28px; /* Reduce el tamaño de la fuente */
+    }
+
+    section p {
+        font-size: 14px; /* Reduce el tamaño de la fuente */
+    }
 }
