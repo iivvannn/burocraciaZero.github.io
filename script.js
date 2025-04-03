@@ -23,7 +23,7 @@ window.addEventListener('scroll', function() {
 // Función para manejar el clic en "Descubre más"
 const discoverMore = document.querySelector('.discover-more');
 discoverMore.addEventListener('click', function() {
-    const nextSection = sections[0]; // Asume que la primera sección es el destino
-    nextSection.scrollIntoView({ behavior: 'smooth' });
+    const offset = sections[1].offsetTop - document.querySelector('header').offsetHeight;
+    window.scrollTo({ top: offset, behavior: 'smooth' });
 });
 
