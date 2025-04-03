@@ -26,3 +26,4 @@ discoverMore.addEventListener('click', function() {
     const nextSection = sections[0]; // Asume que la primera sección es el destino
     nextSection.scrollIntoView({ behavior: 'smooth' });
 });
+
