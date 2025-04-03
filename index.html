@@ -14,15 +14,32 @@
 <body>
     <header>
         <nav>
+            <button class="menu-icon" style="display: none;">☰</button>
             <a href="#" class="logo">BurocracIA Zero</a>
             <div class="nav-links">
                 <a href="#inicio">Inicio</a>
                 <a href="#servicios">Servicios</a>
             </div>
+            <button class="add-documents-btn">
+                <span>+</span> Añadir documentos
+            </button>
+            <span class="notification-icon" style="display: none;">🔔</span>
+            <span class="profile-icon" style="display: none;">👤</span>
             <button class="login-btn" onclick="location.href='login.html'">Iniciar Sesión</button>
         </nav>
+        <div class="profile-menu">
+            <a href="#" id="logout">Cerrar sesión</a>
+        </div>
+        <div class="notification-menu">
+            <p>No tienes notificaciones nuevas.</p>
+        </div>
     </header>
     
+    <div class="vertical-menu" style="display: none;">
+        <a href="#tramitacion">En tramitación</a>
+        <a href="#documentos">Mis documentos</a>
+    </div>
+
     <main id="inicio">
         <h1>¿Qué quieres gestionar hoy?</h1>
         

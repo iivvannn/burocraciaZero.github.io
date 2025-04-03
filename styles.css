@@ -85,6 +85,107 @@ nav {
     background-color: #3367d6;
 }
 
+/* Header styles for logged-in users */
+header.logged-in {
+    background-color: #4285f4;
+    color: white;
+}
+
+header.logged-in .logo,
+header.logged-in .nav-links a,
+header.logged-in .menu-icon,
+header.logged-in .add-documents-btn,
+header.logged-in .notification-icon,
+header.logged-in .profile-icon {
+    color: white;
+}
+
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.add-documents-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.notification-icon,
+.profile-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.profile-menu,
+.notification-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1001;
+}
+
+.profile-menu a,
+.notification-menu p {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+    cursor: pointer;
+}
+
+.profile-menu a:hover,
+.notification-menu p:hover {
+    background-color: #f1f1f1;
+}
+
+/* Vertical menu for logged-in users */
+.vertical-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #4285f4;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.vertical-menu .menu-icon {
+    z-index: 1100;
+}
+
+/* Show vertical menu when logged in */
+header.logged-in + .vertical-menu {
+    display: flex;
+}
+
+.vertical-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.vertical-menu a:hover {
+    text-decoration: underline;
+}
+
 /* Estilos del contenido principal */
 main {
     margin-top: 100px;
@@ -181,13 +282,15 @@ section {
     width: 100%;
     height: calc(100vh - 65px);
     /* border: #000000 1px solid; */
+    margin-bottom: 5%;
+    /* margin: 20px 10px 20px 10px; */
 }
 
 .section-content {
     display: grid;
     grid-template-rows: 1fr 3fr;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px 60px;
+    gap: 10px 80px;
     width: 100%;
     height: 100%;
     align-items: top;
@@ -221,19 +324,18 @@ section h2 {
 }
 
 .service {
-    grid-row: 2;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     background-color: #ffffff;
     border-radius: 30px;
-    padding: 25px;
+    padding: 35px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
 
 .service img {
-    display: block;
-    margin: 40px auto 0; /* Centers the image horizontally and adds top margin */
+    margin: 10px auto auto auto;
     max-width: 50%;
     border-radius: 15px;
 }
@@ -241,6 +343,7 @@ section h2 {
 .service h3 {
     font-size: 24px;
     color: #333;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
