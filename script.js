@@ -6,12 +6,14 @@ const loginBtn = document.querySelector('.login-btn');
 const sections = document.querySelectorAll('main, section');
 
 document.addEventListener("DOMContentLoaded", function() {
+     /*
     const sesionIniciada = localStorage.getItem("sesionIniciada");
     const notificationIcon = document.querySelector('.notification-icon');
     const profileIcon = document.querySelector('.profile-icon');
     const menuIcon = document.querySelector('.menu-icon');
     const verticalMenu = document.querySelector('.vertical-menu');
 
+   
     if (sesionIniciada === "true") {
         console.log("Sesión detectada en index.html");
         notificationIcon.style.display = 'inline';
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menuIcon.style.display = 'none';
         verticalMenu.style.display = 'none';
     }
+    */
 });
 
 // Función para manejar el evento de scroll

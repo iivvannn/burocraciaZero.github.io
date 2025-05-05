@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+
+    <title>BurocracIA Zero</title>
+    <link rel="stylesheet" href="styles-login-menu.css">
+    <script src="loginMenu.js" defer></script>
+</head>
+
+<body>
+    
+
+    <header>
+        <nav>
+            <span class="notification-icon">🔔</span>
+            <span class="profile-icon">👤</span>
+        </nav>
+    </header>
+
+    <button id="menuToggleBtn" class="menu-toggle" onclick="toggleSidebar()">≡</button>
+
+    <div class="container">
+
+        <div class="sidebar hidden">
+            <a href="#tramitacion">En tramitación</a>
+            <a href="#documentos">Mis documentos</a>
+        </div>
+
+        <div id="main" class="main-content">
+            <h1>¿Qué quieres gestionar hoy?</h1>
+            
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Busca el trámite que quieras">
+                <button class="voice-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    Voz
+                </button>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    
+</body>
+</html>

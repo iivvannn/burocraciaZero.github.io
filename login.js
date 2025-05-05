@@ -20,7 +20,7 @@ var caja_register = document.querySelector(".caja_trasera_registrar");
 function menu() {
     // Guardar el estado de la sesión en localStorage
     localStorage.setItem("sesionIniciada", "true");
-    window.location.href = "index.html";
+    window.location.href = "indexlogin.html";
 }
 
 function iniciarSesion(){
