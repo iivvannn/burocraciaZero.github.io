@@ -177,6 +177,17 @@ section {
     box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
 }
 
+/* When dropdown is open (showing suggestions), flatten bottom corners */
+#hero .search-bar:focus {
+    border-radius: 20px 20px 0 0;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    position: relative;
+    z-index: 1001;
+    margin-right: -1px;
+    box-shadow: none;
+}
+
 .input-group {
     position: relative;
     width: 100%;
