@@ -179,6 +179,67 @@
             display: block;
             content: "";
         }
+
+        @media (max-width: 768px) {
+            .sections-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-section {
+                max-width: 100%;
+                padding: 1rem;
+            }
+
+            .progress-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .progress-step {
+                flex: none;
+                width: 100%;
+            }
+
+            .progress-step:not(:last-child)::after {
+                display: none; /* Remove horizontal dashed lines on mobile */
+            }
+
+            .progress-step-label {
+                font-size: 0.8rem;
+            }
+
+            .progress-diamond {
+                width: 30px;
+                height: 30px;
+            }
+
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .upload-section .btn-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .progress-step-label {
+                font-size: 0.7rem;
+            }
+        }
+        
+
     </style>
 </head>
 <body>    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm py-2">
