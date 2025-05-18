@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Seleccionar Interesado - BurocracIA Zero</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 75px; 
+        }
+
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: #4285F4 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .btn-login {
+            background-color: #4285F4;
+            border-color: #4285F4;
+            border-radius: 50px;
+            padding: 8px 20px;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: #3267d6;
+            border-color: #3267d6;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+
+        .progress-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: rgba(102, 102, 102, 0.3);
+            z-index: 1;
+            border-style: dashed;
+        }
+
+        .progress-diamond {
+            width: 40px;
+            height: 40px;
+            background-color: #4285F4;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .progress-diamond.inactive {
+            background-color: #e0e0e0;
+        }
+
+        .progress-step.active .progress-diamond {
+            background-color: #4285F4;
+        }
+
+        .progress-step-label {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .content-section label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-section input {
+            border-radius: 8px;
+            border: 1px solid #d3d3d3;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .content-section input:focus {
+            border-color: #4285F4;
+            box-shadow: 0 0 5px rgba(66, 133, 244, 0.3);
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: #4285F4;
+            border-color: #4285F4;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #3267d6;
+            border-color: #3267d6;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d3d3d3;
+            border-color: #d3d3d3;
+        }
+    </style>
+</head>
+<body>    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm py-2">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand" href="#">BurocracIA Zero</a>
+        </div>
+    </nav>
+
+    <div class="container"> 
+        <div class="progress-container mt-4"> 
+            <div class="progress-step active">
+                <div class="progress-diamond"></div>
+                <div class="progress-step-label">Seleccionar interesado</div>
+            </div>
+            <div class="progress-step">
+                <div class="progress-diamond inactive"></div>
+                <div class="progress-step-label">Aportar información requerida</div>
+            </div>
+            <div class="progress-step">
+                <div class="progress-diamond inactive"></div>
+                <div class="progress-step-label">Resumen y confirmación</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 id="gestionTitulo">Beca Educación 2025</h2> 
+            <div class="mb-4">
+                <label for="interestedPerson" class="form-label">¿Para quién quieres hacer el trámite?</label>
+                <input type="text" class="form-control" id="interestedPerson" placeholder="Escribe el nombre de la persona interesada">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="goBack()">Salir</button>
+                <button class="btn btn-primary" onclick="goNext()">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para obtener parámetros de la URL
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Función para formatear el nombre de la gestión (de kebab-case a Título Capitalizado)
+        function formatGestionName(gestion) {
+            if (!gestion) return 'Gestión'; // Valor por defecto si no hay gestión
+            return gestion.replace(/-/g, ' ').split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            }).join(' ');
+        }
+
+        // Al cargar el documento, actualiza el h2 y el título de la página si hay un parámetro 'gestion'
+        document.addEventListener('DOMContentLoaded', () => {
+            const gestionFromUrl = getUrlParameter('gestion');
+            const gestionTitleElement = document.getElementById('gestionTitulo');
+            const pageTitleElement = document.getElementById('pageTitle');
+
+            if (gestionFromUrl) {
+                const formattedGestion = formatGestionName(gestionFromUrl);
+                gestionTitleElement.textContent = formattedGestion;
+                pageTitleElement.textContent = `${formattedGestion} - BurocracIA Zero`;
+            } else {
+                // Si no hay parámetro 'gestion', mantener el título por defecto
+                gestionTitleElement.textContent = 'Selecciona tu Trámite';
+                pageTitleElement.textContent = 'Seleccionar Interesado - BurocracIA Zero';
+            }
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goNext() {
+            const interestedPerson = document.getElementById('interestedPerson').value;
+            if (interestedPerson.trim() === '') {
+                alert('Por favor, introduce el nombre de la persona interesada.');
+                return;
+            }
+
+            // Obtiene el parámetro 'gestion' de la URL actual para pasarlo a la siguiente página
+            const currentGestion = getUrlParameter('gestion');
+
+            let nextUrl = 'aportarInformacion.html';
+            let params = [];
+
+            // Añade el nombre de la persona a los parámetros
+            params.push('person=' + encodeURIComponent(interestedPerson));
+
+            // Si hay un parámetro 'gestion', añádelo también a los parámetros de la siguiente URL
+            if (currentGestion) {
+                params.push('gestion=' + encodeURIComponent(currentGestion));
+            }
+
+            // Construye la URL final con todos los parámetros
+            if (params.length > 0) {
+                nextUrl += '?' + params.join('&');
+            }
+            
+            console.log('Navegando a la siguiente sección con:', interestedPerson, 'y gestión:', currentGestion);
+            window.location.href = nextUrl;
+        }
+    </script>
+</body>
+</html>

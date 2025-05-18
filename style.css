@@ -1,0 +1,417 @@
+:root {
+    --main-blue: #4285F4;
+    --azul-oscuro: #2A43C0;
+}
+
+body {
+    position: relative; /* Required for scrollspy */
+    font-family: 'Manrope', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+p {
+    color: #000000; /* Set all <p> tags to black */
+    font-size: 1.2rem; /* Increase font size for <p> tags */
+    text-align: justify; /* Justify text for <p> tags */
+}
+
+h3 {
+    color: #000000;
+    font-weight: 600;
+}
+
+.navbar {
+    background-color: white !important;
+}
+
+.navbar .container-fluid {
+    padding: 0;
+}
+
+.navbar-brand {
+    color: var(--main-blue) !important;
+    font-weight: bold;
+    padding-left: 8px;
+    margin-left: 0;
+}
+
+.navbar-nav {
+    width: auto;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-link {
+    color: #212529 !important;
+    position: relative;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    margin: 0 0.5rem;
+    display: inline-block;
+}
+
+.nav-link:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-link.active {
+    color: var(--main-blue) !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: var(--main-blue);
+    bottom: -12px;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+#inicio h1 {
+    font-weight: bold;
+    font-size: 3.5rem; /* Adjust as needed */
+}
+
+/* Style for active nav link */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+    color: #4285F4 !important;
+    font-weight: 700;
+}
+
+/* Ensure sections take full viewport height and allow for navbar offset */
+section {
+    min-height: 100vh;
+    padding-top: 56px; /* Adjust based on your navbar height */
+    padding-bottom: 20px;
+}
+
+#sobre-nosotros, #ahorra-tiempo, #muchos-beneficiarios {
+    scroll-snap-align: start; /* Snap to the start of these sections */
+}
+
+/* Custom styling for the white content boxes within colored sections */
+#sobre-nosotros .bg-white,
+#ahorra-tiempo .bg-white,
+#muchos-beneficiarios .bg-white {
+    border-radius: 1rem !important; /* More pronounced rounded corners */
+}
+
+/* Ensure images within the white boxes don't overflow and maintain aspect ratio */
+#sobre-nosotros img,
+#ahorra-tiempo img,
+#muchos-beneficiarios img {
+    object-fit: contain; /* Ensures the whole image is visible without cropping */
+    width: 100%;
+}
+
+#hero {
+    height: 100vh;
+    display: flex;
+    align-items: top;
+    padding-top: 35vh;
+    background-color: white;
+    position: relative;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+}
+
+.search-container .form-control {
+    padding-left: 40px;
+    width: 100%;
+}
+
+.search-icon-wrapper {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1002; /* Higher than both searchbar and suggestions */
+    pointer-events: none;
+    height: 16px;
+    display: flex;
+    align-items: center;
+}
+
+#hero .content-wrapper {
+    width: 100%;
+}
+
+#hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#hero .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Base width for the search bar */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#hero .search-bar {
+    border-radius: 40px;
+    padding: 15px 20px 15px 50px;  /* Match the dropdown item padding */
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 84.4%;
+}
+
+/* When dropdown is open, flatten bottom corners */
+#hero .search-bar[aria-expanded="true"] {
+    border-radius: 40px 40px 0 0;
+    border: 1px solid #ddd;
+    border-bottom-color: white;
+    position: relative;
+    z-index: 1001;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 95px; /* Make room for the voice button */
+}
+
+.busqueda-voz {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f8f9fa;
+    border-radius: 200px !important;
+    padding: 9px 18px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    font-size: 14px;
+    gap: 8px;
+    color: var(--main-blue);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 82px; /* Fixed width to maintain size */
+    height: 36px; /* Fixed height to maintain size */
+    justify-content: center;
+}
+
+.busqueda-voz:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.busqueda-voz.recording .bi-mic-fill,
+.busqueda-voz.recording small {
+    display: none;
+}
+
+.frequency-bars {
+    display: none;
+    height: 20px;
+    gap: 2px;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px; /* Fixed width for the frequency visualization */
+    justify-content: center;
+}
+
+.frequency-bars .bar {
+    width: 3px;
+    height: 100%;
+    background-color: var(--main-blue);
+    animation: sound-wave 1s infinite;
+}
+
+.frequency-bars .bar:nth-child(1) { animation-delay: 0.0s; }
+.frequency-bars .bar:nth-child(2) { animation-delay: 0.2s; }
+.frequency-bars .bar:nth-child(3) { animation-delay: 0.4s; }
+.frequency-bars .bar:nth-child(4) { animation-delay: 0.6s; }
+.frequency-bars .bar:nth-child(5) { animation-delay: 0.8s; }
+
+.busqueda-voz.recording .frequency-bars {
+    display: flex;
+}
+
+@keyframes sound-wave {
+    0% { height: 5px; }
+    50% { height: 20px; }
+    100% { height: 5px; }
+}
+
+.discover-more {
+    color: var(--main-blue);
+    text-decoration: none;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--main-blue);
+    border-color: var(--main-blue);
+}
+
+.btn-login {
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-right: 3vw;
+}
+
+#about {
+    background-color: var(--main-blue);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+#about h2 {
+    margin-top: 8%;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    color: #333;
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.feature-content {
+    flex: 1;
+    padding-right: 30px;
+}
+
+.feature-visual {
+    flex: 1;
+}
+
+.feature-image {
+    background-color: #0f86ff;
+    border-radius: 12px;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive font sizes for headings */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
+    #hero {
+        padding-top: 25vh; 
+    }
+    .busqueda-voz small {
+        display: none;
+    }
+    .busqueda-voz {
+        width: 13%;
+        padding: 13px 13px;
+    }    
+    .input-group {
+        padding-right: 55px; /* Make room for the voice button */
+    }
+    
+    .search-suggestions {
+        width: 100%; /* Make dropdown full width of the container */
+    }
+
+    .dropdown-item {
+        padding: 10px 15px 10px 40px; 
+        font-size: 0.95rem;
+        white-space: normal; 
+        line-height: 1.2;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+    }
+    .search-suggestions-header {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+    .nav-link.active::after {
+        display: none; /* Hide the blue line under active nav items on mobile */
+    }
+}
+
+/* Style for the suggestions overlay */
+.search-suggestions {
+    border-radius: 0 0 40px 40px;
+    border: 1px solid #ddd;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    width: 84.4%;
+    background-color: white;
+    padding: 0 0 10px 0;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 1px);
+    z-index: 1000;
+}
+
+.search-suggestions-header {
+    padding: 5px 20px 0px 22px;
+    color: #757575;
+    font-size: 0.85rem;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 20px 8px 50px;
+    border-top: 1px solid #ddd;
+    font-size: 1rem;
+    color: #212529;
+    position: relative;
+}
+
+.dropdown-item:first-child {
+    border-top: none;
+}
+
+.dropdown-item .search-icon-wrapper {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1002;
+    pointer-events: none;
+    height: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #212529;
+}

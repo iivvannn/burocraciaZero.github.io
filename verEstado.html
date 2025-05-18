@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Estado del Trámite - BurocracIA Zero</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 75px;
+        }
+
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-brand {
+            color: #4285F4 !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.25rem 0.5rem;
+            color: #000;
+        }
+
+        .navbar-nav .nav-link i {
+            font-size: 2.5rem;
+            color: #f4a261; /* Original color for the bell icon */
+        }
+
+        .navbar-nav .nav-link .bi-person-circle {
+            color: #000; /* Original color for the person icon */
+        }        .progress-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 3rem auto;
+            max-width: 1200px; /* Aumentado para dar más espacio */
+            gap: 180px; /* Aumentado el espacio entre los elementos */
+            padding: 0 30px; /* Padding para evitar que toque los bordes en móvil */
+        }        .progress-line {
+            position: absolute;
+            top: 35px; /* aligned with center of diamond */
+            left: 0; /* Extendido hasta el borde izquierdo */
+            right: 0; /* Extendido hasta el borde derecho */
+            height: 4px;
+            background: rgba(102, 102, 102, 0.3);
+            border-style: dashed;
+            z-index: 0;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1; /* bring steps over the line */
+            width: 70px; /* Ancho fijo para cada paso */
+        }
+
+        .progress-diamond {
+            width: 70px;
+            height: 70px;
+            background-color: #e0e0e0;
+            transform: rotate(45deg);
+            position: relative;
+            transition: background-color 0.3s ease; /* Smooth transition for color change */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress-diamond.active {
+            background-color: #4285F4; /* Blue color for active diamonds */
+        }
+
+        .progress-step-label {
+            margin-top: 2.5rem; /* Vertical spacing */
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color 0.3s ease; /* Smooth transition for color change */
+        }
+
+        .progress-step-label.active-label {
+            color: #4285F4; /* Blue color for active labels */
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4.5rem; /* Overall padding */
+            text-align: center;
+        }
+
+        .content-section h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 3.5rem;
+        }
+
+        .btn-primary {
+            background-color: #4285F4;
+            border-color: #4285F4;
+            border-radius: 12px;
+            padding: 14px 35px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #3267d6;
+            border-color: #3267d6;
+        }
+
+        /* Responsive adjustments for smaller screens */        @media (max-width: 768px) {
+            .progress-step-label {
+                font-size: 0.9rem; /* Smaller font size for labels */
+                white-space: normal; /* Allow text to wrap */
+                text-align: center;
+                margin-top: 1.5rem;
+            }
+            .progress-diamond {
+                width: 50px;
+                height: 50px;
+            }            .progress-line {
+                top: 25px;
+                left: 0;
+                right: 0;
+            }.progress-container {
+                gap: 60px; /* Aumentado pero manteniendo proporción en móvil */
+                padding: 0 10px;
+                max-width: 100%; /* Asegurar que no desborde en móvil */
+            }
+            .progress-step {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BurocracIA Zero</a>
+            <div class="ms-auto">
+                <ul class="navbar-nav">
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content-section">
+            <h2 id="gestionTitulo">Licencia sanitaria</h2>
+            <div class="progress-container">
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <div class="progress-diamond"></div>
+                    <div class="progress-step-label">Solicitud recibida</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-diamond"></div>
+                    <div class="progress-step-label">En revisión</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-diamond"></div>
+                    <div class="progress-step-label">Resultado preliminar</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-diamond"></div>
+                    <div class="progress-step-label">Resultado final</div>
+                </div>
+            </div>
+            <button class="btn btn-primary mt-5" onclick="goBack()">Volver</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to get URL parameter
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to format gestion name
+        function formatGestionName(gestion) {
+            if (!gestion) return 'Estado del Trámite';
+            return gestion.replace(/-/g, ' ').split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            }).join(' ');
+        }
+
+        // Update title and progress bar on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const gestionFromUrl = getUrlParameter('gestion');
+            const formattedGestion = formatGestionName(gestionFromUrl);
+
+            const gestionTitleElement = document.getElementById('gestionTitulo');
+            const pageTitleElement = document.getElementById('pageTitle');
+
+            if (gestionFromUrl) {
+                gestionTitleElement.textContent = formattedGestion;
+                pageTitleElement.textContent = `${formattedGestion} - BurocracIA Zero`;
+            } else {
+                // Fallback if 'gestion' parameter is not present
+                gestionTitleElement.textContent = 'Estado del Trámite';
+                pageTitleElement.textContent = 'Estado del Trámite - BurocracIA Zero';
+            }
+
+            // --- Dynamic Progress Bar Logic ---
+            // Get the 'step' parameter from the URL, default to 0 if not a valid number
+            const stepFromUrl = parseInt(getUrlParameter('step'));
+            const currentStepIndex = isNaN(stepFromUrl) ? 0 : stepFromUrl;
+
+            const progressSteps = document.querySelectorAll('.progress-step');
+
+            // Iterate through each progress step and apply 'active' class if it's
+            // at or before the current step index
+            progressSteps.forEach((stepElement, index) => {
+                const diamond = stepElement.querySelector('.progress-diamond');
+                const label = stepElement.querySelector('.progress-step-label');
+
+                if (index <= currentStepIndex) {
+                    diamond.classList.add('active');
+                    label.classList.add('active-label');
+                } else {
+                    // Ensure inactive steps are reset in case of back navigation or re-renders
+                    diamond.classList.remove('active');
+                    label.classList.remove('active-label');
+                }
+            });
+            // --- End Dynamic Progress Bar Logic ---
+        });
+
+        // Function to go back to the previous page in the assumed workflow
+        function goBack() {
+            // Check if "username" cookie exists
+            function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+            }
+
+            if (getCookie('username')) {
+            window.location.href = '/miPanel.html';
+            } else {
+            window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

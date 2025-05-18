@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Resumen y Confirmación - BurocracIA Zero</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 75px; 
+        }
+
+        .navbar {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: #4285F4 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .btn-login {
+            background-color: #4285F4;
+            border-color: #4285F4;
+            border-radius: 50px;
+            padding: 8px 20px;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: #3267d6;
+            border-color: #3267d6;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+            text-align: center;
+        }
+
+        .progress-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background: rgba(102, 102, 102, 0.3);
+            z-index: 1;
+            border-style: dashed;
+        }
+
+        .progress-diamond {
+            width: 40px;
+            height: 40px;
+            background-color: #4285F4;
+            transform: rotate(45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .progress-diamond.inactive {
+            background-color: #e0e0e0;
+        }
+
+        /* Todos los pasos hasta el actual estarán activos */
+        .progress-step:nth-child(-n+3) .progress-diamond { /* Adjust '3' based on current step number */
+            background-color: #4285F4;
+        }
+        .progress-step:nth-child(-n+2)::after { /* Adjust '2' to connect previous active steps */
+            background: #4285F4;
+            border-style: solid;
+        }
+
+
+        .progress-step-label {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .step-description {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+            max-width: 120px;
+            text-align: center;
+        } 
+        .sections-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .content-section {
+            flex: 1;
+            max-width: 700px; /* Adjust max-width for a single content section */
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .summary-item {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .summary-item strong {
+            color: #4285F4;
+        }
+        .summary-item ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+        .summary-item li {
+            background-color: #f0f8ff;
+            border-left: 3px solid #4285F4;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.3rem;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #4285F4;
+            border-color: #4285F4;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #3267d6;
+            border-color: #3267d6;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #333;
+        } 
+        .btn-secondary:hover {
+            background-color: #d3d3d3;
+            border-color: #d3d3d3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm py-2">
+        <div class="container-fluid px-3">
+            <a class="navbar-brand" href="#">BurocracIA Zero</a>
+            <div class="ms-auto">
+                <a href="login.html">
+                    <button class="btn btn-login">Iniciar Sesión</button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container"> 
+        <div class="progress-container mt-4"> 
+            <div class="progress-step active">
+                <div class="progress-diamond"></div>
+                <div class="progress-step-label">Seleccionar interesado</div>
+            </div>
+            <div class="progress-step active">
+                <div class="progress-diamond"></div>
+                <div class="progress-step-label">Aportar información requerida</div>
+            </div>
+            <div class="progress-step active"> <div class="progress-diamond"></div>
+                <div class="progress-step-label">Resumen y confirmación</div>
+            </div> 
+        </div>
+
+        <div class="sections-container">
+            <div class="content-section mt-4"> 
+                <h2>Resumen y Confirmación</h2>
+                <div id="summaryContent">
+                    <p class="text-center text-muted">Cargando resumen...</p>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-secondary" onclick="goBack()">Volver</button>
+                    <button class="btn btn-primary" onclick="confirmTramite()">Confirmar Trámite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        // --- Funciones de utilidad para la URL y formato (copiadas de la página anterior) ---
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function formatGestionName(gestion) {
+            if (!gestion) return 'Trámite'; // Valor por defecto
+            return gestion.replace(/-/g, ' ').split(' ').map(word => {
+                return word.charAt(0).toUpperCase() + word.slice(1);
+            }).join(' ');
+        }
+
+        // --- Al cargar la página: Recupera y muestra la información ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const person = getUrlParameter('person');
+            const gestion = getUrlParameter('gestion');
+            const uploadedFilesInfoJSON = sessionStorage.getItem('uploadedFilesInfo');
+            const summaryContentDiv = document.getElementById('summaryContent');
+
+            let htmlContent = '';
+
+            if (person) {
+                htmlContent += `<p class="summary-item"><strong>Persona interesada:</strong> ${person}</p>`;
+            } else {
+                htmlContent += `<p class="summary-item text-danger">No se ha podido recuperar la información de la persona.</p>`;
+            }
+
+            if (gestion) {
+                htmlContent += `<p class="summary-item"><strong>Trámite:</strong> ${formatGestionName(gestion)}</p>`;
+            } else {
+                htmlContent += `<p class="summary-item text-danger">No se ha podido recuperar el trámite.</p>`;
+            }
+
+            if (uploadedFilesInfoJSON) {
+                try {
+                    const files = JSON.parse(uploadedFilesInfoJSON);
+                    if (files.length > 0) {
+                        htmlContent += `<p class="summary-item"><strong>Documentos adjuntos:</strong></p><ul>`;
+                        files.forEach(file => {
+                            htmlContent += `<li>${file.name} (${(file.size / 1024).toFixed(2)} KB)</li>`;
+                        });
+                        htmlContent += `</ul>`;
+                    } else {
+                        htmlContent += `<p class="summary-item">No se han adjuntado documentos.</p>`;
+                    }
+                } catch (e) {
+                    console.error("Error al parsear la información de los archivos:", e);
+                    htmlContent += `<p class="summary-item text-danger">Error al cargar la información de los archivos.</p>`;
+                }
+            } else {
+                htmlContent += `<p class="summary-item">No se han adjuntado documentos.</p>`;
+            }
+
+            summaryContentDiv.innerHTML = htmlContent;
+        });
+
+        // --- Funciones de navegación ---
+        function goBack() {
+            // Vuelve a la página anterior, pasando los parámetros actuales para mantener el contexto
+            const person = getUrlParameter('person');
+            const gestion = getUrlParameter('gestion');
+
+            let prevUrl = 'aportarInformacion.html';
+            const params = [];
+            if (person) params.push('person=' + encodeURIComponent(person));
+            if (gestion) params.push('gestion=' + encodeURIComponent(gestion));
+
+            if (params.length > 0) {
+                prevUrl += '?' + params.join('&');
+            }
+            window.location.href = prevUrl;
+        }        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        function confirmTramite() {
+            const gestion = getUrlParameter('gestion');
+            const gestionNombre = formatGestionName(gestion || 'Trámite');
+
+            // Obtener trámites existentes desde localStorage
+            let pendientes = JSON.parse(localStorage.getItem('tramitesPendientes')) || [];
+
+            // Agregar nuevo trámite
+            pendientes.push(gestionNombre);
+
+            // Guardar de nuevo en localStorage
+            localStorage.setItem('tramitesPendientes', JSON.stringify(pendientes));
+
+            // Confirmación y redirección basada en la cookie
+            alert('¡Trámite confirmado con éxito! 🎉');
+            
+            const username = getCookie('username');
+            if (username) {
+                window.location.href = '/miPanel.html';
+            } else {
+                window.location.href = '/index.html';
+            }
+        }
+
+        window.goBack = goBack;
+        window.confirmTramite = confirmTramite;
+
+    </script>
+</body>
+</html>
