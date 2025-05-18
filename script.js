@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Add click handlers for notification items
+    const searchDropdownMenu = document.querySelector('.search-suggestions');
     document.querySelectorAll('.notification-dropdown .dropdown-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -97,6 +98,90 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         }
     });
+
+    const searchBar = document.querySelector('.search-bar');
+
+searchBar.addEventListener('focus', function() {
+        searchDropdownMenu.classList.add('show');
+    });
+
+// Permite al usuario filtrar las sugerencias mientras escribe
+    searchBar.addEventListener('input', function() {
+        const searchText = this.value.trim().toLowerCase();
+        document.querySelectorAll('.search-suggestions .dropdown-item').forEach(item => {
+            const itemText = item.textContent.trim().toLowerCase();
+            if (itemText.includes(searchText)) {
+                item.style.display = 'block'; // Muestra el item si coincide
+            } else {
+                item.style.display = 'none'; // Oculta el item si no coincide
+            }
+        });
+        // Si no hay texto, muestra todas las sugerencias
+        if (searchText === '') {
+            document.querySelectorAll('.search-suggestions .dropdown-item').forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+    });
+
+    // Controla la navegación al presionar 'Enter' en la barra de búsqueda
+        searchBar.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                const typedText = this.value.trim();
+                // Convertir el texto introducido al formato de parámetro de gestión
+                const typedGestionParam = encodeURIComponent(typedText
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                    .replace(/[^a-z0-9-]/g, ''));
+
+                // Comprobar si el trámite introducido es válido
+                if (validGestionParams.includes(typedGestionParam)) {
+                    const targetUrl = `seleccionarInteresado.html?gestion=${typedGestionParam}`;
+                    console.log(`Navigating to: ${targetUrl}`);
+                    window.location.href = targetUrl;
+                } else {
+                    alert('El trámite introducido no es válido. Por favor, selecciona uno de las sugerencias o introduce un trámite existente.');
+                    // Opcional: podrías limpiar la barra de búsqueda o forzar que el desplegable se mantenga abierto
+                    // this.value = ''; 
+                    // searchDropdownMenu.classList.add('show'); // Mantener abierto si quieres que el usuario vea las opciones
+                }
+            }
+        });  
+
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.search-container');
+            const searchBar = document.querySelector('.search-bar');
+            
+            // Check if click is on search bar to prevent immediate hide
+            if (e.target === searchBar) {
+                searchDropdownMenu.classList.add('show');
+            }
+            // Hide only if click is outside container and not on search bar
+            else if (!searchContainer.contains(e.target)) {
+                searchDropdownMenu.classList.remove('show');
+            }
+    });
+
+    // Voice search functionality
+    document.querySelector('.busqueda-voz').addEventListener('click', function() {    const button = this;
+        if (!button.classList.contains('recording')) {
+            // Start recording
+            button.classList.add('recording');
+            
+            // Simulate 4 seconds of recording
+            setTimeout(() => {
+                // Stop recording
+                const targetUrl = `seleccionarInteresado.html?gestion=beca-educacion-2025`;
+                window.location.href = targetUrl;
+                button.classList.remove('recording');
+            
+            }, 4000);
+        }
+    });
+
+
+
 });
 
 
@@ -180,83 +265,3 @@ window.addEventListener('scroll', () => {
     });
 });
 
-const searchBar = document.querySelector('.search-bar');
-
-searchBar.addEventListener('focus', function() {
-        searchDropdownMenu.classList.add('show');
-    });
-
-// Permite al usuario filtrar las sugerencias mientras escribe
-    searchBar.addEventListener('input', function() {
-        const searchText = this.value.trim().toLowerCase();
-        document.querySelectorAll('.search-suggestions .dropdown-item').forEach(item => {
-            const itemText = item.textContent.trim().toLowerCase();
-            if (itemText.includes(searchText)) {
-                item.style.display = 'block'; // Muestra el item si coincide
-            } else {
-                item.style.display = 'none'; // Oculta el item si no coincide
-            }
-        });
-        // Si no hay texto, muestra todas las sugerencias
-        if (searchText === '') {
-            document.querySelectorAll('.search-suggestions .dropdown-item').forEach(item => {
-                item.style.display = 'block';
-            });
-        }
-    });
-
-// Controla la navegación al presionar 'Enter' en la barra de búsqueda
-    searchBar.addEventListener('keyup', function(e) {
-        if (e.key === 'Enter') {
-            const typedText = this.value.trim();
-            // Convertir el texto introducido al formato de parámetro de gestión
-            const typedGestionParam = encodeURIComponent(typedText
-                .toLowerCase()
-                .replace(/\s+/g, '-')
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9-]/g, ''));
-
-            // Comprobar si el trámite introducido es válido
-            if (validGestionParams.includes(typedGestionParam)) {
-                const targetUrl = `seleccionarInteresado.html?gestion=${typedGestionParam}`;
-                console.log(`Navigating to: ${targetUrl}`);
-                window.location.href = targetUrl;
-            } else {
-                alert('El trámite introducido no es válido. Por favor, selecciona uno de las sugerencias o introduce un trámite existente.');
-                // Opcional: podrías limpiar la barra de búsqueda o forzar que el desplegable se mantenga abierto
-                // this.value = ''; 
-                // searchDropdownMenu.classList.add('show'); // Mantener abierto si quieres que el usuario vea las opciones
-            }
-        }
-    });  
-
-    document.addEventListener('click', function(e) {
-        const searchContainer = document.querySelector('.search-container');
-        const searchBar = document.querySelector('.search-bar');
-        
-        // Check if click is on search bar to prevent immediate hide
-        if (e.target === searchBar) {
-            searchDropdownMenu.classList.add('show');
-        }
-        // Hide only if click is outside container and not on search bar
-        else if (!searchContainer.contains(e.target)) {
-            searchDropdownMenu.classList.remove('show');
-        }
-});
-
-// Voice search functionality
-document.querySelector('.busqueda-voz').addEventListener('click', function() {    const button = this;
-    if (!button.classList.contains('recording')) {
-        // Start recording
-        button.classList.add('recording');
-        
-        // Simulate 4 seconds of recording
-        setTimeout(() => {
-            // Stop recording
-            const targetUrl = `seleccionarInteresado.html?gestion=beca-educacion-2025`;
-            window.location.href = targetUrl;
-            button.classList.remove('recording');
-        
-        }, 4000);
-    }
-});
