@@ -183,15 +183,9 @@
         }
     </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm py-2">
+<body>    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm py-2">
         <div class="container-fluid px-3">
-            <a class="navbar-brand" href="#">BurocracIA Zero</a>
-            <div class="ms-auto">
-                <a href="login.html">
-                    <button class="btn btn-login">Iniciar Sesión</button>
-                </a>
-            </div>
+            <a class="navbar-brand" href="index.html">BurocracIA Zero</a>
         </div>
     </nav>
 
@@ -328,9 +322,12 @@
             
             const username = getCookie('username');
             if (username) {
-                window.location.href = '/miPanel.html';
+                const targetUrl = `miPanel.html`;
+                window.location.href = targetUrl;
+                
             } else {
-                window.location.href = '/index.html';
+                const targetUrl = `index.html`;
+                window.location.href = targetUrl;
             }
         }
 
