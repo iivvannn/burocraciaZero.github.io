@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Add click handlers for notification items
-    const searchDropdownMenu = document.querySelector('.search-suggestions');
     document.querySelectorAll('.notification-dropdown .dropdown-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -102,6 +101,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const searchBar = document.querySelector('.search-bar');
 
 searchBar.addEventListener('focus', function() {
+        const searchDropdownMenu = document.querySelector('.search-suggestions');
         searchDropdownMenu.classList.add('show');
     });
 
@@ -150,9 +150,10 @@ searchBar.addEventListener('focus', function() {
         });  
 
         document.addEventListener('click', function(e) {
+            
             const searchContainer = document.querySelector('.search-container');
             const searchBar = document.querySelector('.search-bar');
-            
+            const searchDropdownMenu = document.querySelector('.search-suggestions');
             // Check if click is on search bar to prevent immediate hide
             if (e.target === searchBar) {
                 searchDropdownMenu.classList.add('show');
