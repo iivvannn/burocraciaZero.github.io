@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         a.classList.add('tramite-pendiente');
         a.addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = "/verEstado.html";
+            const targetUrl = `verEstado.html`;
+            window.location.href = targetUrl;
         });
         li.appendChild(a);
         submenu.appendChild(li);
