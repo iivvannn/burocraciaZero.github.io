@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         a.classList.add('tramite-pendiente');
         a.addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = `/verEstado.html?NombreTramite=${encodeURIComponent(tramite)}`;
+            window.location.href = "/verEstado.html";
         });
         li.appendChild(a);
         submenu.appendChild(li);
@@ -146,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Simulate 4 seconds of recording
             setTimeout(() => {
                 // Stop recording
-                window.location.href = '/seleccionarInteresado.html?gestion=beca-educacion-2025';
+                const targetUrl = `seleccionarInteresado.html?gestion=beca-educacion-2025`;
+                window.location.href = targetUrl;
                 button.classList.remove('recording');
             
             }, 4000);

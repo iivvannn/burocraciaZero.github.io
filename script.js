@@ -242,20 +242,21 @@ searchBar.addEventListener('focus', function() {
         else if (!searchContainer.contains(e.target)) {
             searchDropdownMenu.classList.remove('show');
         }
+        
+        document.querySelector('.busqueda-voz').addEventListener('click', function() {    const button = this;
+        if (!button.classList.contains('recording')) {
+            // Start recording
+            button.classList.add('recording');
+            
+            // Simulate 4 seconds of recording
+            setTimeout(() => {
+                // Stop recording
+                const targetUrl = `seleccionarInteresado.html?gestion=beca-educacion-2025`;
+                window.location.href = targetUrl;
+                button.classList.remove('recording');
+            
+            }, 4000);
+        }
     });
-
-// Voice search functionality
-document.querySelector('.busqueda-voz').addEventListener('click', function() {    const button = this;
-    if (!button.classList.contains('recording')) {
-        // Start recording
-        button.classList.add('recording');
-        
-        // Simulate 4 seconds of recording
-        setTimeout(() => {
-            // Stop recording
-            window.location.href = '/seleccionarInteresado.html?gestion=beca-educacion-2025';
-            button.classList.remove('recording');
-        
-        }, 4000);
-    }
 });
+
